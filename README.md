@@ -9,6 +9,9 @@ Como se puede apreciar en el vídeo anterior, que demuestra el funcionamiento de
 - **1era:** Dibujado por parte del usuario de un perfil de la figura deseada, a partir del cual se creará un sólido de revolución.
 - **2da:** Observación y apreciación del resultado obtenido.
 
+Antes de continuar, es prudente conocer la definición del concepto sólido de revolución:
+> *Un sólido de revolución es un cuerpo que puede obtenerse mediante una operación geométrica de rotación de una superficie plana alrededor de una recta que es contenida en su mismo plano (la recta es a veces denominada eje). En principio, cualquier cuerpo con simetría axial o cilíndrica es un sólido de revolución.* (<a href="https://es.wikipedia.org/wiki/Sólido_de_revolución">Fuente</a>)<
+
 ## Controles
 Los controles de la aplicación se mostrarán en todo momento por pantalla para facilitar su uso al usuario:
 - **Click izquierdo:** Si vamos haciendo click izquierdo en la parte derecha de la pantalla, vemos como se irán conectando los puntos relativos a los lugares donde hayamos presionado el botón del mouse, obteniendo así un boceto de la figura deseada.
@@ -27,7 +30,7 @@ Aprovechando que el lenguaje de programación que utiliza el IDE Processing por 
 
 
 ## Descarga y prueba
-Para poder probar correctamente el código, es necesario descargar todos los ficheros y guardarlo en una carpeta. El archivo "README.md" es opcional, si se descarga no debería influir en el funcionamiento de código ya que, es exclusivo de la plataforma GitHub.
+Para poder probar correctamente el código, es necesario descargar todos los ficheros (los .pde y la carpeta data, esta contiene los archivos extras que utiliza la aplicación) y guardarlo en una carpeta. El archivo "README.md" es opcional, si se descarga no debería influir en el funcionamiento de código ya que, es exclusivo de la plataforma GitHub.
 
 ## Recursos empleados
 Para la realización de este modelado 3D de un sólido de revolución, se han consultado y/o utilizado los siguientes recursos:
