@@ -76,6 +76,69 @@ void mouseClicked() {
 ```
 Como se puede ver, si presionamos el click izquierdo del mouse, empezaremos a dibujar puntos que al unirlos conforman el perfil de la figura deseada por el usuario. Mostramos las líneas del contorno del boceto y vamos añadiendo los puntos a un vector de tipo *ArrayList* (optamos por esta estructura de datos por su versatilidad a la hora de añadir nuevos elementos, además de su facilidad para recorrer y tratar los mismos). En cambio, si presionamos click derecho le estamos diciendo a la aplicación que cree el sólido en revolución a partir de los puntos dados y que habilite la fase de visualización del resultado.
 
+### Clase Model
+Es la clase que representa nuestro objeto en tres dimensiones, el sólido de revolución. Para su elaboración hacemos uso de la variable y los métodos de *PShape*, tipo de dato que permite almacenar formas, con valor *TRIANGLE_STRIP*. Esto se debe a que nuestro modelo será construído en base a la unión de múltiples triángulos.
+```
+void showModel(ArrayList<Point> points) {
+    
+  int numberOfPoints = points.size();
+  
+    if (numberOfPoints >= 2) {
+      int numberOfRotations = 45;
+      int angle = 360 / numberOfRotations;
+      float radians = angle * 3.141592 / 180;
+      
+      model = createShape();
+      model.beginShape(TRIANGLE_STRIP);
+      
+      model.stroke(255);
+      model.fill(95, 230, 255);
+      model.strokeWeight(2);
+      
+      Point currentLevelPoint, nextLevelPoint;
+      
+      for (int i = 0; i < numberOfPoints - 1; i++) {
+        
+        currentLevelPoint = points.get(i);
+        nextLevelPoint = points.get(i + 1);
+        
+        model.vertex(currentLevelPoint.x, currentLevelPoint.y, currentLevelPoint.z);
+        model.vertex(nextLevelPoint.x, nextLevelPoint.y, nextLevelPoint.z);
+        
+        for (int j = angle; j <= 360; j += angle) {
+          currentLevelPoint = points.get(i);
+          currentLevelPoint = new Point(getNewX(currentLevelPoint, radians),
+                                        currentLevelPoint.y,
+                                        getNewZ(currentLevelPoint, radians));
+          model.vertex(currentLevelPoint.x, currentLevelPoint.y, currentLevelPoint.z);
+    
+          nextLevelPoint = points.get(i + 1);
+          nextLevelPoint = new Point(getNewX(nextLevelPoint, radians),
+                                     nextLevelPoint.y,
+                                     getNewZ(nextLevelPoint, radians));
+          model.vertex(nextLevelPoint.x, nextLevelPoint.y, nextLevelPoint.z);
+          
+          radians = (angle + j) * 3.141592 / 180;
+        }    
+      }
+      model.endShape();
+    }
+  }
+```
+Por otra parte, en esta clase se implementan los métodos y funciones que alteran el estado de nuestro modelo, como cambiar el color o rotarlo, *changeColor()* y *rotateModel()* respectivamente.
+```
+void changeColor() {
+    model.setFill(color(random(130,255), random(130,255), random(130,255)));
+  }
+  
+  void rotateModel() {
+    if (up) model.rotateX(-0.1);
+    if (down) model.rotateX(0.1);
+    if (left) model.rotateY(0.1);
+    if (right) model.rotateY(-0.1);
+  }
+```
+
 ## Descarga y prueba
 Para poder probar correctamente el código, es necesario descargar todos los ficheros (los .pde y la carpeta data, esta contiene los archivos extras que utiliza la aplicación) y guardarlo en una carpeta. El archivo "README.md" es opcional, si se descarga no debería influir en el funcionamiento de código ya que, es exclusivo de la plataforma GitHub.
 
