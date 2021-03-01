@@ -10,7 +10,7 @@ Como se puede apreciar en el vídeo anterior, que demuestra el funcionamiento de
 - **2da:** Observación y apreciación del resultado obtenido.
 
 Antes de continuar, es prudente conocer la definición del concepto sólido de revolución:
-> *Un sólido de revolución es un cuerpo que puede obtenerse mediante una operación geométrica de rotación de una superficie plana alrededor de una recta que es contenida en su mismo plano (la recta es a veces denominada eje). En principio, cualquier cuerpo con simetría axial o cilíndrica es un sólido de revolución.* (<a href="https://es.wikipedia.org/wiki/Sólido_de_revolución">Fuente</a>)<
+> *Un sólido de revolución es un cuerpo que puede obtenerse mediante una operación geométrica de rotación de una superficie plana alrededor de una recta que es contenida en su mismo plano (la recta es a veces denominada eje). En principio, cualquier cuerpo con simetría axial o cilíndrica es un sólido de revolución.* (<a href="https://es.wikipedia.org/wiki/Sólido_de_revolución">Fuente</a>)
 
 ## Controles
 Los controles de la aplicación se mostrarán en todo momento por pantalla para facilitar su uso al usuario:
@@ -27,7 +27,54 @@ Aprovechando que el lenguaje de programación que utiliza el IDE Processing por 
 - **Point:** clase que representa cada uno de los puntos introducidos por el usuario
 
 ## Explicación
+### Clase SolidOfRevolution
+Esta es la clase principal de la aplicación, la cual gestiona la información mostrada por pantalla al usuario (interfaz gráfica), esto es, el desarrollo de los métodos *setup()* y *draw()*. 
+```
+void setup() {
+  surface.setTitle("Solid of revolution");
+  size(800, 600, P3D);
+  stroke(95, 230, 255);
+  image = loadImage("Captura.JPG");
+  points = new ArrayList();
+  menu = true;
+  sketchMode = false;
+  modelMode = false;
+  model = new Model();
+}
 
+void draw() {
+  if (menu) menu();
+  if (modelMode) {
+    pushMatrix();
+    background(0);
+    showHelp();
+    translate(mouseX, mouseY-150, -300);
+    shape(shape);
+    model.rotateModel();
+    popMatrix();
+  }
+}
+```
+En el método *draw()*, el comando *translate()* tiene dos valores numéricos en sus dos últimos argumentos. Esto se debe a que para representar correctamente el sólido al completo y que se pudiera desplazar en cierta "sincronía" con el desplazamiento del mouse, hemos restado unas cantidades determinadas a los ejes de coordenadas para desplazar la figura -150 puntos en el eje Y y -300 en el Z (alejarlo de la vista del usuario para apreciar todo su tamaño).
+
+Por otra parte, esta misma clase es la que maneja la interacción entre el usuario y la interfaz mediante la implementación de los métodos *keyPressed()*, *keyReleased()*, *mousePressed()*, entre otros. Un ejemplo se muestra a continuación:
+```
+void mouseClicked() {
+  if (menu) return;
+  if (mouseButton == LEFT && mouseX > width/2 && sketchMode) {
+    currentPoint = new Point(mouseX, mouseY, 0);
+    drawLine();
+    points.add(new Point(currentPoint.x - width / 2, currentPoint.y - height / 2, 0));
+  }
+  if (mouseButton == RIGHT && sketchMode && points.size() >= 2) {
+    sketchMode = false;
+    model.showModel(points);
+    shape = model.getModel();
+    modelMode = true;
+  }
+}
+```
+Como se puede ver, si presionamos el click izquierdo del mouse, empezaremos a dibujar puntos que al unirlos conforman el perfil de la figura deseada por el usuario. Mostramos las líneas del contorno del boceto y vamos añadiendo los puntos a un vector de tipo *ArrayList* (optamos por esta estructura de datos por su versatilidad a la hora de añadir nuevos elementos, además de su facilidad para recorrer y tratar los mismos). En cambio, si presionamos click derecho le estamos diciendo a la aplicación que cree el sólido en revolución a partir de los puntos dados y que habilite la fase de visualización del resultado.
 
 ## Descarga y prueba
 Para poder probar correctamente el código, es necesario descargar todos los ficheros (los .pde y la carpeta data, esta contiene los archivos extras que utiliza la aplicación) y guardarlo en una carpeta. El archivo "README.md" es opcional, si se descarga no debería influir en el funcionamiento de código ya que, es exclusivo de la plataforma GitHub.
