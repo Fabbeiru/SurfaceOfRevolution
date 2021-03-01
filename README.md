@@ -3,9 +3,7 @@ Surface of revolution 3D model using processing.
 
 ## Introducción
 El objetivo de esta segunda práctica de la asignatura de 4to, Creación de Interfaces de Usuario (CIU), es AQUI usando el lenguaje de programación y el IDE llamado Processing. Este permite desarrollar código en diferentes lenguajes y/o modos, como puede ser processing (basado en Java), p5.js (librería de JavaScript), Python, entre otros.
-<p align="center"><img src="/pongGif.gif" alt="Pong using processing"></img></p>
-
-**NOTA:** El .gif anterior no es un representación exacta del juego ya que se muestra a una velocidad de reproducción inferior de la normal. 
+<p align="center"><img src="/solidOfRevolutionGif.gif" alt="Solid of revolution 3D model using processing"></img></p>
 
 ## Controles
 
