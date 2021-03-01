@@ -29,7 +29,7 @@ Aprovechando que el lenguaje de programación que utiliza el IDE Processing por 
 ## Explicación
 ### Clase SolidOfRevolution
 Esta es la clase principal de la aplicación, la cual gestiona la información mostrada por pantalla al usuario (interfaz gráfica), esto es, el desarrollo de los métodos *setup()* y *draw()*. 
-```
+```java
 void setup() {
   surface.setTitle("Solid of revolution");
   size(800, 600, P3D);
@@ -58,7 +58,7 @@ void draw() {
 En el método *draw()*, el comando *translate()* tiene dos valores numéricos en sus dos últimos argumentos. Esto se debe a que para representar correctamente el sólido al completo y que se pudiera desplazar en cierta "sincronía" con el desplazamiento del mouse, hemos restado unas cantidades determinadas a los ejes de coordenadas para desplazar la figura -150 puntos en el eje Y y -300 en el Z (alejarlo de la vista del usuario para apreciar todo su tamaño).
 
 Por otra parte, esta misma clase es la que maneja la interacción entre el usuario y la interfaz mediante la implementación de los métodos *keyPressed()*, *keyReleased()*, *mousePressed()*, entre otros. Un ejemplo se muestra a continuación:
-```
+```java
 void mouseClicked() {
   if (menu) return;
   if (mouseButton == LEFT && mouseX > width/2 && sketchMode) {
@@ -78,7 +78,7 @@ Como se puede ver, si presionamos el click izquierdo del mouse, empezaremos a di
 
 ### Clase Model
 Es la clase que representa nuestro objeto en tres dimensiones, el sólido de revolución. Para su elaboración hacemos uso de la variable y los métodos de *PShape*, tipo de dato que permite almacenar formas, con valor *TRIANGLE_STRIP*. Esto se debe a que nuestro modelo será construído en base a la unión de múltiples triángulos.
-```
+```java
 void showModel(ArrayList<Point> points) {
     
   int numberOfPoints = points.size();
@@ -126,7 +126,7 @@ void showModel(ArrayList<Point> points) {
   }
 ```
 Por otra parte, en esta clase se implementan los métodos y funciones que alteran el estado de nuestro modelo, como cambiar el color o rotarlo, *changeColor()* y *rotateModel()* respectivamente.
-```
+```java
 void changeColor() {
     model.setFill(color(random(130,255), random(130,255), random(130,255)));
   }
