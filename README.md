@@ -140,7 +140,7 @@ void changeColor() {
 ```
 
 ## Descarga y prueba
-Para poder probar correctamente el código, es necesario descargar todos los ficheros (los .pde y la carpeta data, esta contiene los archivos extras que utiliza la aplicación) y guardarlo en una carpeta con el mismo nombre que el archivo de la clase principal (SolidOfRevolution). El archivo "README.md" es opcional, si se descarga no debería influir en el funcionamiento de código ya que, es exclusivo de la plataforma GitHub.
+Para poder probar correctamente el código, es necesario descargar todos los ficheros (el .zip del repositorio) y en la carpeta llamada SolidOfRevolution se encuentran los archivos de la aplicación listos para probar y ejecutar. El archivo "README.md" y aquellos fuera de la carpeta del proyecto (SolidOfRevolution), son opcionales, si se descargan no deberían influir en el funcionamiento del código ya que, son usados para darle formato a la presentación y explicación del repositorio en la plataforma GitHub.
 
 ## Recursos empleados
 Para la realización de este modelado 3D de un sólido de revolución, se han consultado y/o utilizado los siguientes recursos:
